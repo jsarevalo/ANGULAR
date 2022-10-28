@@ -1,0 +1,43 @@
+<main class="main" >
+  <article *ngFor="let brand of (brands$ | async)" class="card" >
+    <div class="card__title" >
+      <h2 [routerLink]="['/','marcas', brand.Id_marca ]"
+          class="card__title--route" >{{brand.Nombre_Marca}}</h2 >
+      <small class="card__status" >{{brand.Pais_Origen}}</small >
+    </div >
+    <div class="card__content" >
+      <p >País de origen: {{brand.Pais_Origen}}</p >
+    </div >
+    <button (click)="openEditor(); loadData(brand)" class="btn" type="button" >
+      <span class="material-symbols-outlined" >edit</span >
+      Editar
+    </button >
+  </article >
+  <button (click)="cleanFields(); openEditor()" class="btn btn--circle btn--float" >
+    <span class="material-symbols-outlined btn__icon btn--3h" >add</span >
+  </button >
+</main >
+
+<aside *ngIf="isEditorOpen" class="aside" >
+  <form (submit)="isCreateMode? createBrand() : updateBrand()" [formGroup]="brandForm" >
+    <fieldset >
+      <legend >
+        <h2 >{{isCreateMode ? 'Crear' : 'Editar'}} marca </h2 >
+      </legend >
+      <label >
+        Nombre de la marca
+        <input formControlName="Nombre_Marca" type="text" >
+      </label >
+      <label >
+        País de origen
+        <input formControlName="Pais_Origen" type="text" >
+      </label >
+      <label >
+        Unidades disponibles
+        <input formControlName="Unidad" type="number" >
+      </label >
+      <input [value]="isCreateMode ? 'Crear' : 'Editar'" class="btn btn--primary" type="submit" >
+    </fieldset >
+  </form >
+</aside >
+

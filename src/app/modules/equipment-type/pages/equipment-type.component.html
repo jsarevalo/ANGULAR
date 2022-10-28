@@ -1,0 +1,7 @@
+<div class="content content--center" >
+  <div *ngFor="let equipmentType of equipmentType$ | async" class="message" >
+    <h2 >Tipo de equipo: {{equipmentType.nombre_tipo_equipo}}</h2 >
+    <h3 >Id de equipo: {{equipmentType.Id_TipoEquipo}}</h3 >
+    <p >Descripción: {{equipmentType.Descripcion}}</p >
+  </div >
+</div >

@@ -1,0 +1,9 @@
+<div class="content content--center" >
+  <div *ngFor="let loan of loan$ | async" class="message" >
+    <h2 >USUARIO: {{loan.Id_Prestamo}} - {{loan.Nombre_usuario}}</h2 >
+    <h3 >PRÉSTAMO DESDE: {{loan.Fecha_Inicio | date : 'short'}} hasta {{loan.Fecha_Fin | date : 'short'}}</h3 >
+    <p >Serial del equipo: {{loan.Serial_Equipo}}</p >
+    <p >Observaciones préstamo: {{loan.Observaciones_Inicio}}</p >
+    <p >Observaciones entrega: {{loan.Observaciones_Fin}}</p >
+  </div >
+</div >

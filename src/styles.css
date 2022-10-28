@@ -1,0 +1,205 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --gap             : .5em;
+  --secondary-color : hsl(196, 6%, 60%);
+  --main-color      : hsl(193, 70%, 45%);
+}
+
+*, *::before, *::after {
+  margin     : 0;
+  padding    : 0;
+  box-sizing : border-box;
+}
+
+body {
+  font-family : "Akshar", sans-serif;
+}
+
+.card {
+  display        : flex;
+  flex-direction : column;
+  padding        : var(--gap);
+}
+
+.card::after {
+  content          : "";
+  width            : 100%;
+  height           : .1em;
+  background-color : var(--secondary-color);
+  position         : relative;
+  bottom           : calc(var(--gap) * -1);
+}
+
+.card__title {
+  display       : flex;
+  align-items   : center;
+  margin-bottom : .25em;
+  font-size     : 1.2rem;
+  gap           : .15em;
+}
+
+.card__status {
+  background-color : #EEE;
+  padding          : .25em .47em;
+  border-radius    : 0.3em;
+  font-size        : 0.65em;
+}
+
+.card__content {
+  flex : 1;
+}
+
+.header {
+  font-family      : "Odibee Sans", cursive;
+  font-size        : 1.3em;
+  display          : flex;
+  background-color : var(--main-color);
+  position         : sticky;
+  top              : 0;
+  z-index          : 1;
+}
+
+.header__nav {
+  flex : 1;
+}
+
+.header__list {
+  display         : flex;
+  text-decoration : none;
+  flex            : 1;
+  justify-content : space-around;
+}
+
+.header__item {
+  list-style      : none;
+  height          : 2.5em;
+  display         : flex;
+  justify-content : center;
+  align-items     : center;
+  flex            : 1;
+}
+
+.header__item:hover {
+  background-color : hsla(0, 0%, 90%, 30%);
+}
+
+.header__route {
+  text-decoration : none;
+  color           : white;
+  display         : flex;
+  flex            : 1;
+  justify-content : center;
+  align-items     : center;
+  text-align      : center;
+}
+
+.card__title--route:hover {
+  cursor : pointer;
+}
+
+.main {
+  width        : clamp(100px, 100%, 350px);
+  border-right : 1px solid hsla(0, 0%, 0%, 50%);
+}
+
+.btn {
+  display         : flex;
+  justify-content : center;
+  align-items     : center;
+  gap             : .2em;
+  border          : none;
+}
+
+.btn:hover {
+  cursor : pointer;
+}
+
+app-user-page, app-persons, app-user-types-pages, app-equipments, app-equipments-types, app-brands, app-loans {
+  display : flex;
+}
+
+.aside {
+  height   : 94.5vh;
+  position : sticky;
+  top      : 2.5em;
+  width    : 100%;
+}
+
+form {
+  position       : relative;
+  top            : 50%;
+  left           : 50%;
+  transform      : translate(-50%, -50%);
+  z-index        : 0;
+  display        : flex;
+  flex-direction : column;
+  align-items    : center;
+}
+
+fieldset {
+  border         : none;
+  display        : flex;
+  flex-direction : column;
+}
+
+label {
+  padding        : .3em;
+  display        : flex;
+  flex-direction : column;
+}
+
+.form__checkbox {
+  flex-direction : row;
+  gap            : .3em;
+  align-items    : center;
+  accent-color   : lime;
+}
+
+.btn--primary {
+  background-color : var(--main-color);
+  padding          : .5em .75em;
+  color            : #EEE;
+  text-shadow      : 1px 1px .1em hsl(0, 0%, 0%, 20%);
+  border-radius    : .3em;
+}
+
+.btn--circle {
+  border-radius : 50%;
+}
+
+.btn--float {
+  position : fixed;
+  bottom   : 2em;
+  right    : 2em;
+  z-index  : 2;
+}
+
+.btn--3h {
+  font-size : 3em;
+}
+
+.content {
+  display        : flex;
+  flex-direction : column;
+}
+
+.content--center {
+  position  : absolute;
+  top       : 50%;
+  left      : 50%;
+  transform : translate(-50%, -50%);
+}
+
+.content__title {
+  position : relative;
+  bottom   : 5em;
+}
+
+.message {
+  padding        : 2em 3em;
+  border-radius  : 1em;
+  box-shadow     : 1px 2px 5px 0 hsla(0, 0%, 0%, 10%);
+  display        : flex;
+  flex-direction : column;
+  gap            : .25em;
+}

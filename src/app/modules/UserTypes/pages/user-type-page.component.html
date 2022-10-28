@@ -1,0 +1,6 @@
+<div class="content content--center" >
+  <div *ngFor="let userType of userType$ | async" class="message" >
+    <h2 >USUARIO: {{userType.Id_Tipo }} - {{userType.Nombre_Tipo_Usuario}}</h2 >
+    <p >Descripción: {{userType.Descripcion_del_Usuario}}</p >
+  </div >
+</div >

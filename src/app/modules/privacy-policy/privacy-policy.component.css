@@ -1,0 +1,44 @@
+.privacy-modal {
+  position         : fixed;
+  bottom           : 1em;
+  z-index          : 3;
+  left             : 50%;
+  transform        : translateX(-50%);
+  padding          : 1.5em 3em;
+
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37);
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  background-color : var(--secondary-color--alpha);
+}
+
+.privacy-modal-close {
+  position         : absolute;
+  top              : 0;
+  right            : 0;
+  padding          : 0.5em;
+  color            : var(--tertiary-color);
+  font-size        : 1.5em;
+  cursor           : pointer;
+}
+
+.privacy-modal__actions {
+  display         : flex;
+  justify-content : space-around;
+  padding-top     : 1em;
+}
+
+.privacy-modal__button {
+  padding          : 0.5em 1em;
+  background-color : var(--main-color);
+  color            : hsl(0, 0%, 100%);
+  font-size        : 1.5em;
+  cursor           : pointer;
+  border-radius    : 0.5em;
+}
+
+.privacy-modal__button--warn {
+  background-color : var(--warning-color);
+}

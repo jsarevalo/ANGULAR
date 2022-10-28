@@ -1,0 +1,53 @@
+<main class="main" >
+  <article *ngFor="let equipment of (equipments$ | async)" class="card" >
+    <div class="card__title" >
+      <h2 [routerLink]="['/','equipos', equipment.Id_Equipo]"
+          class="card__title--route" >{{equipment.Descripcion}}</h2 >
+      <small class="card__status" >{{equipment.Nombre_marca}}</small >
+    </div >
+    <div class="card__content" >
+      <p >Serial del equipo: {{equipment.Serial}}</p >
+    </div >
+    <button (click)="openEditor(); loadData(equipment)" class="btn" type="button" >
+      <span class="material-symbols-outlined" >edit</span >
+      Editar
+    </button >
+  </article >
+  <button (click)="cleanFields(); openEditor()" class="btn btn--circle btn--float" >
+    <span class="material-symbols-outlined btn__icon btn--3h" >add</span >
+  </button >
+</main >
+
+<aside *ngIf="isEditorOpen" class="aside" >
+  <form (submit)="isCreateMode? createEquipment() : updateEquipment()" [formGroup]="equipmentForm" >
+    <fieldset >
+      <legend >
+        <h2 >{{isCreateMode ? 'Crear' : 'Editar'}} equipo </h2 >
+      </legend >
+      <label >
+        Marca
+        <select formControlName="Id_marca" >
+          <option *ngIf="isCreateMode" [value]="null" disabled >Seleccione una opción</option >
+          <option *ngFor="let branch of brands" [value]="branch.Id_marca" >
+            {{branch.Nombre_Marca}}
+          </option >
+        </select >
+      </label >
+      <label >
+        Tipo de equipo
+        <select formControlName="Id_TipoEquipo" >
+          <option *ngIf="isCreateMode" [value]="null" disabled >Seleccione una opción</option >
+          <option *ngFor="let equipmetType of equipmentTypes" [value]="equipmetType.Id_TipoEquipo" >
+            {{equipmetType.Descripcion}}
+          </option >
+        </select >
+      </label >
+      <label >
+        Serial
+        <input formControlName="Serial" type="text" >
+      </label >
+      <input [value]="isCreateMode ? 'Crear' : 'Editar'" class="btn btn--primary" type="submit" >
+    </fieldset >
+  </form >
+</aside >
+

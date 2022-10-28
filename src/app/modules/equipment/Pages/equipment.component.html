@@ -1,0 +1,7 @@
+<div class="content content--center" >
+  <div *ngFor="let person of equipment$ | async" class="message" >
+    <h2 >SERIAL: {{person.Serial}}</h2 >
+    <h3 >MARCA: {{person.Nombre_marca}}</h3 >
+    <p >Descripción: {{person.Descripcion}}</p >
+  </div >
+</div >

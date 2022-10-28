@@ -1,0 +1,67 @@
+<main class="main" >
+  <article *ngFor="let loan of (loans$ | async)" class="card" >
+    <div class="card__title" >
+      <h2 [routerLink]="['/','prestamos', loan.Id_Prestamo]"
+          class="card__title--route" >{{loan.Nombre_usuario}}</h2 >
+      <small class="card__status" >Equipo: {{loan.Serial_Equipo}}</small >
+    </div >
+    <div class="card__content" >
+      <p >Fecha del préstamo: {{loan.Fecha_Inicio | date : 'short'}}</p >
+      <p >Fecha de entrega: {{loan.Fecha_Fin | date : 'short'}}</p >
+      <p >Observaciones de préstamo: {{loan.Observaciones_Inicio}}</p >
+      <p >Observaciones de entrega: {{loan.Observaciones_Fin}}</p >
+    </div >
+    <button (click)="openEditor(); loadData(loan)" class="btn" type="button" >
+      <span class="material-symbols-outlined" >edit</span >
+      Editar
+    </button >
+  </article >
+  <button (click)="cleanFields(); openEditor()" class="btn btn--circle btn--float" >
+    <span class="material-symbols-outlined btn__icon btn--3h" >add</span >
+  </button >
+</main >
+
+<aside *ngIf="isEditorOpen" class="aside" >
+  <form (submit)="isCreateMode? createLoans() : updateLoad()" [formGroup]="equipmentForm" >
+    <fieldset >
+      <legend >
+        <h2 >{{isCreateMode ? 'Crear' : 'Editar'}} préstamo</h2 >
+      </legend >
+      <label >
+        Equipo a prestar
+        <select formControlName="Id_Equipo" >
+          <option *ngIf="isCreateMode" [value]="null" disabled >Seleccione una opción</option >
+          <option *ngFor="let equipment of equipments" [value]="equipment.Id_Equipo" >
+            {{equipment.Serial}} {{equipment.Id_TipoEquipo }}
+          </option >
+        </select >
+      </label >
+      <label >
+        Usuario al que se le va a prestar
+        <select formControlName="Id_Usuario" >
+          <option *ngIf="isCreateMode" [value]="null" disabled >Seleccione una opción</option >
+          <option *ngFor="let user of users" [value]="user.Id_Usuario" >
+            {{user.nick_name}}
+          </option >
+        </select >
+      </label >
+      <label >
+        Fecha de inicio del préstamo
+        <input formControlName="Fecha_Inicio" type="datetime-local" >
+      </label >
+      <label >
+        Fecha fin del préstamo
+        <input formControlName="Fecha_Fin" type="datetime-local" >
+      </label >
+      <label >
+        Observaciones antes del préstamo
+        <textarea formControlName="Observaciones_Inicio" ></textarea >
+      </label >
+      <label >
+        Observaciones después del préstamo
+        <textarea formControlName="Observaciones_Fin" ></textarea >
+      </label >
+      <input [value]="isCreateMode ? 'Crear' : 'Editar'" class="btn btn--primary" type="submit" >
+    </fieldset >
+  </form >
+</aside >

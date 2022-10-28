@@ -1,0 +1,38 @@
+<main class="main" >
+  <article *ngFor="let userTypes of (userTypes$ | async)" class="card" >
+    <div class="card__title" >
+      <h2 [routerLink]="['/','tipos-usuario', userTypes.Id_Tipo]"
+          class="card__title--route" >{{userTypes.Nombre_Tipo_Usuario}}</h2 >
+    </div >
+    <div class="card__content" >
+      <p >Descripción: {{userTypes.Descripcion_del_Usuario}}</p >
+    </div >
+    <button (click)="openEditor(); loadData(userTypes)" class="btn" type="button" >
+      <span class="material-symbols-outlined" >edit</span >
+      Editar
+    </button >
+  </article >
+  <button (click)="cleanFields(); openEditor()" class="btn btn--circle btn--float" >
+    <span class="material-symbols-outlined btn__icon btn--3h" >add</span >
+  </button >
+</main >
+
+<aside *ngIf="isEditorOpen" class="aside" >
+  <form (submit)="isCreateMode? createUserType() : updateUserType()" [formGroup]="userTypeForm" >
+    <fieldset >
+      <legend >
+        <h2 >{{isCreateMode ? 'Crear' : 'Editar'}} tipo de usuario </h2 >
+      </legend >
+      <label >
+        Nombre tipo de usuario
+        <input formControlName="Nombre_Tipo_Usuario" type="text" >
+      </label >
+      <label >
+        Descripción del usuario
+        <textarea formControlName="Descripcion_del_Usuario" ></textarea >
+      </label >
+      <input [value]="isCreateMode ? 'Crear' : 'Editar'" class="btn btn--primary" type="submit" >
+    </fieldset >
+  </form >
+</aside >
+

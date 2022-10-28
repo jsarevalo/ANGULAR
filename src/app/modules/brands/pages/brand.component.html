@@ -1,0 +1,7 @@
+<div class="content content--center" >
+  <div *ngFor="let brand of brand$ | async" class="message" >
+    <h2 >Marca: {{brand.Id_marca }} - {{brand.Nombre_Marca}}</h2 >
+    <h3 >País de origen: {{brand.Pais_Origen }}</h3 >
+    <p >Total unidades: {{brand.Unidad}}</p >
+  </div >
+</div >

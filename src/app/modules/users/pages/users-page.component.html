@@ -1,0 +1,61 @@
+<main class="main" >
+  <article *ngFor="let user of (users$ | async)" class="card" >
+    <div class="card__title" >
+      <h2 [routerLink]="['/','usuarios', user.Id_Usuario]" class="card__title--route" >{{user.nick_name}}</h2 >
+      <small class="card__status" >{{user.activo_usuario ? 'Activo' : 'Inactivo'}}</small >
+    </div >
+    <div class="card__content" >
+      <p >Contraseña: {{user.password}}</p >
+      <p >Tipo de usuario: {{user.Nombre_Tipo_Usuario}}</p >
+    </div >
+    <button (click)="openEditor(); loadData(user)" class="btn" type="button" >
+      <span class="material-symbols-outlined" >edit</span >
+      Editar
+    </button >
+  </article >
+  <button (click)="cleanFields(); openEditor()" class="btn btn--circle btn--float" >
+    <span class="material-symbols-outlined btn__icon btn--3h" >add</span >
+  </button >
+</main >
+
+<aside *ngIf="isEditorOpen" class="aside" >
+  <form (submit)="isCreateMode? createUser() : updateUser()" [formGroup]="userForm" >
+    <fieldset >
+      <legend >
+        <label *ngIf="isCreateMode; else EditMessage" >
+          <h2 >Crear usuario de </h2 >
+          <select formControlName="Id_Usuario" >
+            <option *ngFor="let person of (persons$ | async)" [value]="person.Id_Persona" >
+              {{person.Nombre1}} {{person.Nombre2}} {{person.Apellido1}} {{person.Apellido2}}
+            </option >
+          </select >
+        </label >
+      </legend >
+      <label >
+        Nombre de usuario
+        <input formControlName="nick_name" type="text" >
+      </label >
+      <label >
+        Contraseña
+        <input formControlName="password" type="text" >
+      </label >
+      <label >
+        Tipo de usuario
+        <select formControlName="Id_Tipo" >
+          <option *ngFor="let userType of userTypes"
+                  [value]="userType.Id_Tipo" >{{userType.Nombre_Tipo_Usuario}}</option >
+        </select >
+      </label >
+      <label class="form__checkbox" >
+        <input formControlName="activo_usuario" type="checkbox" >
+        Está activo
+      </label >
+      <input [value]="isCreateMode ? 'Crear' : 'Editar'" class="btn btn--primary" type="submit" >
+    </fieldset >
+  </form >
+</aside >
+
+<ng-template #EditMessage >
+  <h2 >Editar usuario </h2 >
+</ng-template >
+

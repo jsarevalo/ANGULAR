@@ -1,0 +1,10 @@
+<div class="content content--center" >
+  <div *ngFor="let person of person$ | async" class="message" >
+    <h2 >USUARIO: {{person.Id_Persona}} - {{person.Apellido1}} {{person.Nombre1}}</h2 >
+    <h3 >NÚMERO DE DOCUMENTO: {{person.Iniciales_tip_doc}} {{person.Num_doc_Persona}}</h3 >
+    <p >Primer Nombre: {{person.Nombre1}}</p >
+    <p >Segundo Nombre: {{person.Nombre2}}</p >
+    <p >Primer Apellido: {{person.Apellido1}}</p >
+    <p >Segundo Apellido: {{person.Apellido2}}</p >
+  </div >
+</div >

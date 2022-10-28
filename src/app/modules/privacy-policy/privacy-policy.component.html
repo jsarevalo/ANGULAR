@@ -1,0 +1,17 @@
+<div class="privacy-modal" *ngIf="!modalClosed">
+  <div class="privacy-modal__content" >
+    <div class="privacy-modal-header" >
+      <span class="privacy-modal-close" (click)="closeModal()" >&times;</span >
+      <h2 >Política de privacidad</h2 >
+    </div >
+    <div class="privacy-modal__body" >
+      <p >Para continuar navegando en nuestro sitio web acepta las <a [routerLink]="['/', 'privacidad']" >políticas de
+        privacidad</a > y uso de Cookies.</p >
+      <div class="privacy-modal__actions" >
+        <input class="privacy-modal__button" type="button" value="Aceptar" (click)="savePolicyPreferences(true)" >
+        <input class="privacy-modal__button privacy-modal__button--warn" type="button" value="Denegar"
+               (click)="savePolicyPreferences(false)" >
+      </div >
+    </div >
+  </div >
+</div >

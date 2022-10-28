@@ -1,0 +1,37 @@
+<main class="main" >
+  <article *ngFor="let equipmentType of (equipmentType$ | async)" class="card" >
+    <div class="card__title" >
+      <h2 [routerLink]="['/','tipos-equipo', equipmentType.Id_TipoEquipo]"
+          class="card__title--route" >{{equipmentType.nombre_tipo_equipo}}</h2 >
+    </div >
+    <div class="card__content" >
+      <p >Descripción: {{equipmentType.Descripcion}}</p >
+    </div >
+    <button (click)="openEditor(); loadData(equipmentType)" class="btn" type="button" >
+      <span class="material-symbols-outlined" >edit</span >
+      Editar
+    </button >
+  </article >
+  <button (click)="cleanFields(); openEditor()" class="btn btn--circle btn--float" >
+    <span class="material-symbols-outlined btn__icon btn--3h" >add</span >
+  </button >
+</main >
+
+<aside *ngIf="isEditorOpen" class="aside" >
+  <form (submit)="isCreateMode? createEquipmentType() : updateEquipmentType()" [formGroup]="equipmentTypeForm" >
+    <fieldset >
+      <legend >
+        <h2 >{{isCreateMode ? 'Crear' : 'Editar'}} tipo de equipo </h2 >
+      </legend >
+      <label >
+        Nombre del tipo de equipo
+        <input formControlName="nombre_tipo_equipo" type="text" >
+      </label >
+      <label >
+        Descripción
+        <input formControlName="Descripcion" type="text" >
+      </label >
+      <input [value]="isCreateMode ? 'Crear' : 'Editar'" class="btn btn--primary" type="submit" >
+    </fieldset >
+  </form >
+</aside >

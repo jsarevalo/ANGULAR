@@ -1,0 +1,27 @@
+<div class="content content--center" >
+  <h1 class="content__title" >¡¡Bienvenidos a Punto Digital!!</h1 >
+
+  <form (submit)="login()" [formGroup]="userSession" class="form" >
+    <ng-container *ngIf="hasRequest && person && person.length > 0; else NotFound" >
+      <h2 >
+        Bienvenid@ {{person[0].Nombre1}} {{person[0].Nombre2[0]}}
+        . {{person[0].Apellido1}} {{person[0].Apellido2[0]}}.</h2 >
+    </ng-container >
+    <fieldset >
+      <legend ><h2 >Iniciar sesión</h2 ></legend >
+      <label >
+        Usuario
+        <input formControlName="nick_name" placeholder="Ingrese su nickname" type="text" >
+      </label >
+      <label >
+        Contraseña
+        <input formControlName="password" placeholder="Ingrese su contraseña" type="password" >
+      </label >
+      <input class="btn btn--primary" type="submit" value="¡Inicia sesión!" >
+    </fieldset >
+  </form >
+</div >
+
+<ng-template #NotFound >
+  <h2 *ngIf="person && person.length > 0" >Usuario no encontrado</h2 >
+</ng-template >

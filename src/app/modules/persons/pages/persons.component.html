@@ -1,0 +1,62 @@
+<main class="main" >
+  <article *ngFor="let person of (persons$ | async)" class="card" >
+    <div class="card__title" >
+      <h2 [routerLink]="['/','personas', person.Id_Persona]"
+          class="card__title--route" >{{person.Nombre1}} {{person.Apellido1}}</h2 >
+      <small class="card__status" >{{person.Iniciales_tip_doc}}: {{person.Num_doc_Persona}}</small >
+    </div >
+    <div class="card__content" >
+      <p >Nombre Completo: {{person.Nombre1}} {{person.Nombre2}} {{person.Apellido1}} {{person.Apellido2}}</p >
+    </div >
+    <button (click)="openEditor(); loadData(person)" class="btn" type="button" >
+      <span class="material-symbols-outlined" >edit</span >
+      Editar
+    </button >
+  </article >
+  <button (click)="cleanFields(); openEditor()" class="btn btn--circle btn--float" >
+    <span class="material-symbols-outlined btn__icon btn--3h" >add</span >
+  </button >
+</main >
+
+<aside *ngIf="isEditorOpen" class="aside" >
+  <form (submit)="isCreateMode? createPerson() : updatePerson()" [formGroup]="personForm" >
+    <fieldset >
+      <legend >
+        <h2 >{{isCreateMode ? 'Crear' : 'Editar'}} persona </h2 >
+      </legend >
+      <label >
+        Tipo de documento
+        <select formControlName="Id_TipoDocumento" >
+          <option *ngIf="isCreateMode" [value]="null" disabled >Seleccione una opción</option >
+          <option *ngFor="let docType of documentTypes" [value]="docType.Id_Tipo_Documento" >
+            {{docType.Iniciales_tip_doc}} - {{docType.Tipo_de_Documento}}
+          </option >
+        </select >
+      </label >
+      <label >
+        Número de documento
+        <input formControlName="Num_doc_Persona" type="text" >
+      </label >
+      <label >
+        Primer nombre
+        <input formControlName="Nombre1" type="text" >
+      </label >
+
+      <label >
+        Segundo nombre
+        <input formControlName="Nombre2" type="text" >
+      </label >
+      <label >
+        Primer apellido
+        <input formControlName="Apellido1" type="text" >
+      </label >
+
+      <label >
+        Segundo apellido
+        <input formControlName="Apellido2" type="text" >
+      </label >
+      <input [value]="isCreateMode ? 'Crear' : 'Editar'" class="btn btn--primary" type="submit" >
+    </fieldset >
+  </form >
+</aside >
+
