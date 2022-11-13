@@ -16,6 +16,7 @@ const routes: Routes = [
   },
   { path: 'marcas', loadChildren: () => import('@modules/brands/brands.module').then(m => m.BrandsModule) },
   { path: 'prestamos', loadChildren: () => import('@modules/loans/loans.module').then(m => m.LoansModule) },
+  { path: 'privacidad', loadChildren: () => import('@modules/policy/policy.module').then(m => m.PolicyModule) },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 

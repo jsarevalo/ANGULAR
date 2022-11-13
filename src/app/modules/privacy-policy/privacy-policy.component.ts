@@ -11,6 +11,7 @@ export class PrivacyPolicyComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.modalClosed = localStorage.getItem('privacyPolicyAccepted') !== null;
   }
 
   savePolicyPreferences(accepted: boolean) {

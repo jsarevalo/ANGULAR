@@ -3,6 +3,9 @@
   --gap             : .5em;
   --secondary-color : hsl(196, 6%, 60%);
   --main-color      : hsl(193, 70%, 45%);
+  --secondary-color--alpha : hsla(196, 6%, 60%, 0.8);
+  --tertiary-color  : hsl(0, 0%, 100%);
+  --warning-color   : hsl(0, 100%, 50%);
 }
 
 *, *::before, *::after {

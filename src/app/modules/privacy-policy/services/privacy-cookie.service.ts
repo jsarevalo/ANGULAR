@@ -6,4 +6,8 @@ import { Injectable } from '@angular/core';
 export class PrivacyCookieService {
 
   constructor() { }
+
+  hasPrivacyPolicyBeenAccepted(): boolean {
+    return localStorage.getItem('privacyPolicyAccepted') === 'true';
+  }
 }
